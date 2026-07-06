@@ -7,6 +7,7 @@ In [Supabase Dashboard](https://supabase.com/dashboard) → **SQL Editor**, past
 1. `supabase/migrations/001_project_requests.sql`
 2. `supabase/migrations/002_create_project_request_rpc.sql`
 3. `supabase/migrations/003_storage_upload_policies.sql`
+4. `supabase/migrations/004_relax_rpc_validation.sql`
 
 This creates:
 
