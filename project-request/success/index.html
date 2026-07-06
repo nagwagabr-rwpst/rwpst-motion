@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="تم إرسال طلبك بنجاح — RWPST MOTION">
+  <meta name="robots" content="noindex, nofollow">
+  <title>تم إرسال الطلب — RWPST MOTION</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <link rel="stylesheet" href="../../assets/css/project-request.css">
+</head>
+<body class="pr-page">
+
+  <header class="header pr-header" id="header">
+    <nav class="nav container" aria-label="التنقل">
+      <a href="../../" class="nav__logo" aria-label="RWPST MOTION الرئيسية">
+        <img src="../../assets/logo/logo.png" alt="RWPST Motion" class="nav__logo-img" width="auto" height="70">
+      </a>
+    </nav>
+  </header>
+
+  <main class="pr-success">
+    <div class="container">
+      <div class="pr-success__card">
+        <div class="pr-success__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h1 class="pr-success__title">تم إرسال طلبك بنجاح!</h1>
+        <p class="pr-success__text">
+          شكراً لثقتك في RWPST MOTION. استلمنا تفاصيل مشروعك وسيتواصل معك فريقنا خلال 24 ساعة لبدء إنتاج الفيديو.
+        </p>
+        <p class="pr-success__ref" id="submissionRef" hidden>
+          رقم الطلب: <span id="submissionId"></span>
+        </p>
+        <div class="pr-success__actions">
+          <a href="../../" class="btn btn--secondary">العودة للرئيسية</a>
+          <a
+            href="https://wa.me/201006786392?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20RWPST%20MOTION%D8%8C%0A%0A%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%B9%D9%85%D9%84%20%D9%81%D9%8A%D8%AF%D9%8A%D9%88%20%D8%A5%D8%B9%D9%84%D8%A7%D9%86%D9%8A.%0A%0A%D9%86%D9%88%D8%B9%20%D8%A7%D9%84%D9%86%D8%B4%D8%A7%D8%B7%3A%0A....................%0A%0A%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%B9%D8%B1%D9%81%D8%A9%20%D8%A7%D9%84%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84%20%D9%88%D8%A7%D9%84%D8%A3%D8%B3%D8%B9%D8%A7%D8%B1."
+            class="btn btn--primary btn--whatsapp"
+            target="_blank"
+            rel="noopener noreferrer"
+          >تواصل عبر واتساب</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">&copy; <span id="year"></span> RWPST MOTION. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+      const header = document.getElementById('header');
+      if (header) {
+        const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 20);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+
+      const requestNumber = sessionStorage.getItem('rwpst_last_request_number');
+      const submissionId = sessionStorage.getItem('rwpst_last_submission_id');
+      const refEl = document.getElementById('submissionRef');
+      const idEl = document.getElementById('submissionId');
+      const displayId = requestNumber || submissionId;
+
+      if (displayId && refEl && idEl) {
+        idEl.textContent = displayId;
+        refEl.hidden = false;
+      }
+    })();
+  </script>
+</body>
+</html>

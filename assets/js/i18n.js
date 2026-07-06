@@ -6,17 +6,25 @@
 
   const STORAGE_KEY = 'rwpst-lang';
   const DEFAULT_LANG = 'ar';
+  const WHATSAPP_NUMBER = '+201006786392';
+
+  const WHATSAPP_MESSAGE =
+    'مرحباً RWPST MOTION،\n\n' +
+    'أرغب في عمل فيديو إعلاني.\n\n' +
+    'نوع النشاط:\n' +
+    '....................\n\n' +
+    'أريد معرفة التفاصيل والأسعار.';
 
   const translations = {
     ar: {
       meta: {
-        title: 'RWPST MOTION — إعلانات فيديو بالذكاء الاصطناعي للشركات والمتاجر',
-        description: 'RWPST MOTION — استوديو إبداعي مدعوم بالذكاء الاصطناعي متخصص في إعلانات فيديو جذابة للشركات الصغيرة.',
+        title: 'RWPST MOTION — فيديوهات إعلانية تجذب العملاء لمشروعك',
+        description: 'RWPST MOTION — استوديو إنتاج فيديوهات إعلانية احترافية للمطاعم والعيادات والمتاجر والعقارات. تسليم خلال 48 ساعة.',
       },
       nav: {
         portfolio: 'أعمالنا',
+        pricing: 'الباقات',
         services: 'خدماتنا',
-        whyUs: 'لماذا نحن',
         contact: 'تواصل معنا',
         toggleMenu: 'فتح القائمة',
         home: 'RWPST MOTION الرئيسية',
@@ -27,23 +35,102 @@
         en: 'EN',
       },
       hero: {
-        badge: 'استوديو إبداعي مدعوم بالذكاء الاصطناعي',
-        titleHtml: 'إعلانات فيديو بالذكاء الاصطناعي<br><span class="hero__title-accent">للشركات والمتاجر</span>',
-        subtitle: 'حوّل منتجاتك وخدماتك إلى فيديوهات تجذب الانتباه وتزيد التفاعل',
-        viewPortfolio: 'شاهد أعمالنا',
-        contactUs: 'تواصل معنا',
-        statDelivery: 'تسليم سريع',
-        statPowered: 'إنتاج مدعوم',
-        statIndustry: 'متعدد القطاعات',
-        statLibrary: 'مكتبة متنامية',
-        scrollTo: 'الانتقال إلى الأعمال',
+        titleHtml: 'فيديوهات إعلانية تساعد مشروعك على <span class="hero__title-accent">جذب المزيد من العملاء</span>',
+        subtitle: 'إنتاج احترافي خلال 48 ساعة للمطاعم والعيادات والعقارات والمتاجر الإلكترونية',
+        ctaPrimary: 'اطلب فيديو الآن',
+        ctaSecondary: 'شاهد النماذج',
+        highlight1: 'يبدأ من 199 جنيه',
+        highlight2: 'تسليم خلال 48 ساعة',
+        highlight3: 'تعديل مجاني',
+        scrollTo: 'الانتقال إلى أعمالنا',
+      },
+      pricing: {
+        tag: 'الباقات',
+        title: 'ابدأ أول فيديو إعلاني لمشروعك',
+        starter: {
+          name: 'Starter',
+          price: '199 جنيه',
+          f1: 'فيديو إعلاني واحد',
+          f2: 'مدة حتى 30 ثانية',
+          f3: 'تسليم خلال 48 ساعة',
+          f4: 'تعديل واحد',
+          cta: 'ابدأ الآن',
+        },
+        growth: {
+          badge: 'الأكثر طلباً',
+          name: 'Growth',
+          price: '750 جنيه',
+          f1: '4 فيديوهات شهرياً',
+          f2: 'محتوى مستمر للسوشيال ميديا',
+          f3: 'تسليم سريع',
+          f4: 'دعم مباشر',
+          cta: 'الأكثر طلباً',
+        },
+        custom: {
+          name: 'Custom',
+          price: 'حسب الطلب',
+          f1: 'حملات كاملة',
+          f2: 'فيديوهات متعددة',
+          f3: 'محتوى مخصص',
+          f4: 'حلول تسويقية متكاملة',
+          cta: 'تواصل معنا',
+        },
       },
       portfolio: {
+        featured: {
+          title: 'نماذج من أعمالنا',
+          desc: 'شاهد كيف نحول الأفكار إلى فيديوهات إعلانية احترافية.',
+        },
         tag: 'أعمالنا',
         title: 'أعمالنا',
-        desc: 'إعلانات جذابة صُنعت لشركات حقيقية. اضغط تشغيل للمشاهدة.',
+        desc: 'نماذج حقيقية من فيديوهات صُنعت لأنشطة تجارية مختلفة. اضغط تشغيل للمشاهدة.',
         addVideo: 'أضف فيديو',
+        tabs: {
+          all: 'الكل',
+          businessGrowth: 'نمو الأعمال',
+          restaurants: 'مطاعم',
+          clinics: 'عيادات',
+          realEstate: 'عقارات',
+          products: 'منتجات',
+          social: 'سوشيال ميديا',
+          other: 'أخرى',
+        },
+        categories: {
+          businessGrowth: {
+            title: 'كيف يمكن لفيديو واحد أن يغيّر طريقة ظهور مشروعك؟',
+            desc: 'نماذج حقيقية توضح تأثير المحتوى المرئي على جذب العملاء.',
+          },
+          restaurants: {
+            title: 'مطاعم',
+            desc: 'فيديوهات طعام تجذب الانتباه وتزيد الطلبات والحجوزات.',
+            verticalTitle: 'إعلانات قصيرة للمطاعم',
+            verticalDesc: 'نماذج فيديوهات عمودية مخصصة للإعلانات الممولة وReels.',
+          },
+          clinics: {
+            title: 'عيادات',
+            desc: 'فيديوهات تبني الثقة وتزيد استفسارات المرضى والحجوزات.',
+          },
+          realEstate: {
+            title: 'عقارات',
+            desc: 'فيديوهات عقارية تعرض المشروع بشكل احترافي وتجذب المشترين.',
+          },
+          products: {
+            title: 'منتجات',
+            desc: 'فيديوهات منتجات تبرز المميزات وتزيد الرسائل والمبيعات.',
+          },
+          social: {
+            title: 'سوشيال ميديا',
+            desc: 'محتوى فيديو قصير جاهز للنشر على إنستغرام وتيك توك وفيسبوك.',
+            empty: 'قريباً — نماذج جديدة من محتوى السوشيال ميديا',
+          },
+          other: {
+            title: 'أخرى',
+            desc: 'فيديوهات لأنشطة تجارية متنوعة.',
+            empty: 'قريباً — نماذج إضافية',
+          },
+        },
         tags: {
+          businessGrowth: 'نمو الأعمال',
           product: 'منتجات',
           luxury: 'فاخر',
           restaurant: 'مطاعم',
@@ -51,6 +138,7 @@
           realEstate: 'عقارات',
         },
         play: {
+          businessGrowth: 'تشغيل نمو الأعمال',
           watch: 'تشغيل إعلان الساعة',
           perfume: 'تشغيل إعلان العطر',
           burger: 'تشغيل إعلان البرجر',
@@ -58,6 +146,7 @@
           realestate: 'تشغيل إعلان العقارات',
         },
         aria: {
+          businessGrowth: 'فيديو نمو الأعمال',
           watch: 'فيديو إعلان الساعة',
           perfume: 'فيديو إعلان العطر',
           burger: 'فيديو إعلان البرجر',
@@ -65,40 +154,72 @@
           realestate: 'فيديو إعلان العقارات',
         },
       },
+      whyVideo: {
+        tag: 'لماذا الفيديو',
+        title: 'لماذا الفيديو أفضل من الصور؟',
+        f1: {
+          title: 'يجذب الانتباه أسرع',
+          desc: 'الفيديو يوقف التمرير ويجعل جمهورك يلاحظ عرضك قبل المنافسين.',
+        },
+        f2: {
+          title: 'يزيد فرص الرسائل والاستفسارات',
+          desc: 'العملاء يتواصلون أكثر عندما يرون خدمتك أو منتجك في حركة واضحة.',
+        },
+        f3: {
+          title: 'يعرض الخدمة بشكل احترافي',
+          desc: 'فيديو منظم يوضح قيمة نشاطك ويبني انطباعاً قوياً من أول ثانية.',
+        },
+        f4: {
+          title: 'يمنح مشروعك صورة أقوى',
+          desc: 'علامتك تبدو أكبر وأكثر جدية — وهذا يساعدك على كسب ثقة العملاء.',
+        },
+      },
       services: {
         tag: 'ما نقدمه',
         title: 'خدماتنا',
-        desc: 'إعلانات فيديو احترافية مصممة لقطاعك وجمهورك.',
+        desc: 'فيديوهات إعلانية مصممة لجذب الانتباه وزيادة الاستفسارات وعرض نشاطك بأفضل صورة.',
         productTitle: 'إعلانات المنتجات',
-        productDesc: 'اعرض منتجاتك بمشاهد سينمائية مولّدة بالذكاء الاصطناعي تزيد النقرات والمبيعات.',
+        productDesc: 'اعرض منتجاتك بطريقة تجذب الانتباه وتزيد الرسائل والطلبات على متجرك.',
         restaurantTitle: 'إعلانات المطاعم',
-        restaurantDesc: 'فيديوهات طعام شهية تجذب الزوار وتزيد طلبات التوصيل.',
+        restaurantDesc: 'فيديوهات طعام شهية تجذب الزوار وتزيد الحجوزات وطلبات التوصيل.',
         clinicTitle: 'إعلانات العيادات',
-        clinicDesc: 'ابنِ الثقة بفيديوهات رعاية صحية احترافية تعكس الاهتمام والخبرة.',
+        clinicDesc: 'قدّم خدماتك بشكل احترافي يبني الثقة ويزيد استفسارات المرضى.',
         realEstateTitle: 'إعلانات العقارات',
-        realEstateDesc: 'أبرز عقاراتك بفيديوهات جولة مذهلة تجذب المشترين الجادين.',
+        realEstateDesc: 'أبرز عقاراتك بفيديو يجذب المشترين الجادين ويزيد الاستفسارات.',
         socialTitle: 'محتوى وسائل التواصل',
-        socialDesc: 'محتوى متسق وجاهز للمنصات يبقي علامتك ظاهرة ومتفاعلة على كل قناة.',
+        socialDesc: 'محتوى فيديو مستمر يبقي نشاطك ظاهراً ويزيد التفاعل والرسائل على كل منصة.',
       },
-      whyUs: {
-        tag: 'ميزة RWPST',
-        title: 'لماذا نحن',
-        desc: 'جودة عالية بدون سعر وكالة باهظ.',
-        fastTitle: 'تسليم سريع',
-        fastDesc: 'احصل على إعلانك جاهزاً خلال 48 ساعة. بدون انتظار طويل أو تأخير.',
-        aiTitle: 'إنتاج مدعوم بالذكاء الاصطناعي',
-        aiDesc: 'أدوات ذكاء اصطناعي متطورة مع إبداع بشري لنتائج مذهلة وفريدة.',
-        editingTitle: 'مونتاج احترافي',
-        editingDesc: 'كل لقطة تُصقلها محترفون يعرفون ما يجعل الإعلانات تحقق النتائج.',
-        affordableTitle: 'باقات مناسبة',
-        affordableDesc: 'أسعار مرنة للشركات الصغيرة. تأثير كبير بدون تكلفة باهظة.',
+      testimonials: {
+        tag: 'آراء العملاء',
+        title: 'آراء العملاء',
+        placeholder1: {
+          quote: '«تجربة رائعة — الفيديو ساعدنا نجذب عملاء جدد.»',
+          name: 'اسم العميل',
+          business: 'نشاط تجاري',
+        },
+        placeholder2: {
+          quote: '«التسليم كان سريع والنتيجة احترافية جداً.»',
+          name: 'اسم العميل',
+          business: 'مطعم',
+        },
+        placeholder3: {
+          quote: '«زادت رسائل الواتساب بعد نشر الفيديو مباشرة.»',
+          name: 'اسم العميل',
+          business: 'عيادة',
+        },
+      },
+      finalCta: {
+        title: 'جاهز لتجربة أول فيديو لمشروعك؟',
+        desc: 'راسلنا الآن واحصل على عرض مناسب لنشاطك.',
+        cta: 'راسلنا على واتساب',
+        whatsappAria: 'تواصل معنا عبر واتساب',
       },
       contact: {
         tag: 'تواصل معنا',
-        title: 'جاهز لإنشاء إعلانك؟',
-        desc: 'أخبرنا عن نشاطك وسنصنع فيديو يوقف التمرير. تواصل اليوم لاستشارة مجانية.',
+        title: 'دعنا نحول فكرتك إلى فيديو يجذب العملاء',
+        desc: 'أخبرنا عن نشاطك ونوع الفيديو الذي تحتاجه. سنرد عليك بعرض مناسب خلال وقت قصير.',
         whatsapp: 'RWPST Motion',
-        whatsappSub: '',
+        whatsappSub: 'راسلنا الآن على واتساب',
         whatsappAria: 'تواصل مع RWPST Motion عبر واتساب',
         floatTooltip: 'تواصل معنا عبر واتساب',
         floatAria: 'تواصل معنا عبر واتساب',
@@ -107,11 +228,10 @@
         emailAria: 'راسلنا على info.rwpst@gmail.com',
         copyEmailAria: 'نسخ عنوان البريد الإلكتروني',
         copyEmailSuccess: 'تم نسخ البريد الإلكتروني',
-        waText: 'مرحباً RWPST MOTION، أود مناقشة إعلانات فيديو بالذكاء الاصطناعي لنشاطي.',
-        emailSubject: 'استفسار عن إعلان فيديو بالذكاء الاصطناعي',
+        emailSubject: 'استفسار عن فيديو إعلاني',
       },
       footer: {
-        tagline: 'استوديو إبداعي مدعوم بالذكاء الاصطناعي',
+        tagline: 'استوديو إنتاج فيديوهات إعلانية',
         rights: 'جميع الحقوق محفوظة.',
       },
       modal: {
@@ -121,13 +241,13 @@
     },
     en: {
       meta: {
-        title: 'RWPST MOTION — AI Video Ads for Small Businesses',
-        description: 'RWPST MOTION — AI-powered creative studio specializing in scroll-stopping video ads for small businesses.',
+        title: 'RWPST MOTION — Video Ads That Bring You More Customers',
+        description: 'RWPST MOTION — Professional video ad production for restaurants, clinics, stores, and real estate. Delivered in 48 hours.',
       },
       nav: {
         portfolio: 'Portfolio',
+        pricing: 'Pricing',
         services: 'Services',
-        whyUs: 'Why Us',
         contact: 'Contact',
         toggleMenu: 'Toggle menu',
         home: 'RWPST MOTION home',
@@ -138,23 +258,102 @@
         en: 'EN',
       },
       hero: {
-        badge: 'AI-Powered Creative Studio',
-        titleHtml: 'AI Video Ads for<br><span class="hero__title-accent">Small Businesses</span>',
-        subtitle: 'Turn your products and services into scroll-stopping videos.',
-        viewPortfolio: 'View Portfolio',
-        contactUs: 'Contact Us',
-        statDelivery: 'Fast Delivery',
-        statPowered: 'Powered Production',
-        statIndustry: 'Multi-Industry',
-        statLibrary: 'Growing Library',
+        titleHtml: 'Video ads that help your business <span class="hero__title-accent">attract more customers</span>',
+        subtitle: 'Professional production in 48 hours for restaurants, clinics, real estate, and e-commerce stores',
+        ctaPrimary: 'Order Your Video Now',
+        ctaSecondary: 'View Samples',
+        highlight1: 'Starting from 199 EGP',
+        highlight2: 'Delivery in 48 hours',
+        highlight3: 'Free revision',
         scrollTo: 'Scroll to portfolio',
       },
+      pricing: {
+        tag: 'Pricing',
+        title: 'Start your first video ad for your business',
+        starter: {
+          name: 'Starter',
+          price: '199 EGP',
+          f1: 'One video ad',
+          f2: 'Up to 30 seconds',
+          f3: 'Delivery in 48 hours',
+          f4: 'One revision',
+          cta: 'Get Started',
+        },
+        growth: {
+          badge: 'Most Popular',
+          name: 'Growth',
+          price: '750 EGP',
+          f1: '4 videos per month',
+          f2: 'Ongoing social media content',
+          f3: 'Fast delivery',
+          f4: 'Direct support',
+          cta: 'Most Popular',
+        },
+        custom: {
+          name: 'Custom',
+          price: 'On request',
+          f1: 'Full campaigns',
+          f2: 'Multiple videos',
+          f3: 'Custom content',
+          f4: 'Integrated marketing solutions',
+          cta: 'Contact Us',
+        },
+      },
       portfolio: {
+        featured: {
+          title: 'Samples from Our Work',
+          desc: 'See how we turn ideas into professional video ads.',
+        },
         tag: 'Our Work',
         title: 'Portfolio',
-        desc: 'Scroll-stopping ads crafted for real businesses. Click play to watch.',
+        desc: 'Real samples of videos made for different businesses. Click play to watch.',
         addVideo: 'Add Video',
+        tabs: {
+          all: 'All',
+          businessGrowth: 'Business Growth',
+          restaurants: 'Restaurants',
+          clinics: 'Clinics',
+          realEstate: 'Real Estate',
+          products: 'Products',
+          social: 'Social Media',
+          other: 'Other',
+        },
+        categories: {
+          businessGrowth: {
+            title: 'How can one video change how your business appears?',
+            desc: 'Real examples showing how visual content attracts customers.',
+          },
+          restaurants: {
+            title: 'Restaurants',
+            desc: 'Food videos that grab attention and increase orders and reservations.',
+            verticalTitle: 'Short Restaurant Ads',
+            verticalDesc: 'Vertical video samples for paid ads and Reels.',
+          },
+          clinics: {
+            title: 'Clinics',
+            desc: 'Videos that build trust and increase patient inquiries and bookings.',
+          },
+          realEstate: {
+            title: 'Real Estate',
+            desc: 'Property videos that showcase projects professionally and attract buyers.',
+          },
+          products: {
+            title: 'Products',
+            desc: 'Product videos that highlight features and drive messages and sales.',
+          },
+          social: {
+            title: 'Social Media',
+            desc: 'Short video content ready to post on Instagram, TikTok, and Facebook.',
+            empty: 'Coming soon — new social media content samples',
+          },
+          other: {
+            title: 'Other',
+            desc: 'Videos for diverse business activities.',
+            empty: 'Coming soon — additional samples',
+          },
+        },
         tags: {
+          businessGrowth: 'Business Growth',
           product: 'Product',
           luxury: 'Luxury',
           restaurant: 'Restaurant',
@@ -162,6 +361,7 @@
           realEstate: 'Real Estate',
         },
         play: {
+          businessGrowth: 'Play Business Growth video',
           watch: 'Play Watch Ad',
           perfume: 'Play Perfume Ad',
           burger: 'Play Burger Ad',
@@ -169,6 +369,7 @@
           realestate: 'Play Real Estate Ad',
         },
         aria: {
+          businessGrowth: 'Business Growth video',
           watch: 'Watch Ad video',
           perfume: 'Perfume Ad video',
           burger: 'Burger Ad video',
@@ -176,40 +377,72 @@
           realestate: 'Real Estate Ad video',
         },
       },
+      whyVideo: {
+        tag: 'Why Video',
+        title: 'Why is video better than images?',
+        f1: {
+          title: 'Grabs attention faster',
+          desc: 'Video stops the scroll and gets your audience to notice your offer before competitors.',
+        },
+        f2: {
+          title: 'Increases messages and inquiries',
+          desc: 'Customers reach out more when they see your service or product in clear motion.',
+        },
+        f3: {
+          title: 'Presents your service professionally',
+          desc: 'A polished video shows your value and builds a strong impression from the first second.',
+        },
+        f4: {
+          title: 'Gives your business a stronger image',
+          desc: 'Your brand looks bigger and more credible — helping you earn customer trust.',
+        },
+      },
       services: {
         tag: 'What We Do',
         title: 'Services',
-        desc: 'Professional video ads tailored to your industry and audience.',
+        desc: 'Video ads designed to grab attention, increase inquiries, and present your business at its best.',
         productTitle: 'Product Ads',
-        productDesc: 'Showcase your products with cinematic AI-generated visuals that drive clicks and conversions.',
+        productDesc: 'Showcase your products in a way that grabs attention and increases messages and store orders.',
         restaurantTitle: 'Restaurant Ads',
-        restaurantDesc: 'Make mouths water with appetizing food videos that fill tables and boost delivery orders.',
+        restaurantDesc: 'Appetizing food videos that attract visitors and boost reservations and delivery orders.',
         clinicTitle: 'Clinic Ads',
-        clinicDesc: 'Build trust with professional healthcare videos that communicate care and expertise.',
+        clinicDesc: 'Present your services professionally to build trust and increase patient inquiries.',
         realEstateTitle: 'Real Estate Ads',
-        realEstateDesc: 'Highlight properties with stunning walkthrough-style videos that attract serious buyers.',
+        realEstateDesc: 'Highlight properties with videos that attract serious buyers and increase inquiries.',
         socialTitle: 'Social Media Content',
-        socialDesc: 'Consistent, platform-ready content that keeps your brand visible and engaging across every channel.',
+        socialDesc: 'Consistent video content that keeps your business visible and drives engagement and messages.',
       },
-      whyUs: {
-        tag: 'The RWPST Advantage',
-        title: 'Why Choose Us',
-        desc: 'Premium quality without the premium agency price tag.',
-        fastTitle: 'Fast Delivery',
-        fastDesc: 'Get your finished ad in as little as 48 hours. No long waits, no missed deadlines.',
-        aiTitle: 'AI-Powered Production',
-        aiDesc: 'Cutting-edge AI tools combined with human creativity for stunning, unique results.',
-        editingTitle: 'Professional Editing',
-        editingDesc: 'Every frame is polished by experienced editors who know what makes ads convert.',
-        affordableTitle: 'Affordable Packages',
-        affordableDesc: 'Flexible pricing designed for small businesses. Big impact without breaking the bank.',
+      testimonials: {
+        tag: 'Client Reviews',
+        title: 'Client Reviews',
+        placeholder1: {
+          quote: '"Great experience — the video helped us attract new customers."',
+          name: 'Client Name',
+          business: 'Business',
+        },
+        placeholder2: {
+          quote: '"Delivery was fast and the result was very professional."',
+          name: 'Client Name',
+          business: 'Restaurant',
+        },
+        placeholder3: {
+          quote: '"WhatsApp messages increased right after we posted the video."',
+          name: 'Client Name',
+          business: 'Clinic',
+        },
+      },
+      finalCta: {
+        title: 'Ready to try your first video for your business?',
+        desc: 'Message us now and get an offer tailored to your business.',
+        cta: 'Message us on WhatsApp',
+        whatsappAria: 'Contact us on WhatsApp',
       },
       contact: {
         tag: 'Get In Touch',
-        title: 'Ready to Create Your Ad?',
-        desc: "Tell us about your business and we'll craft a video that stops the scroll. Reach out today for a free consultation.",
+        title: "Let's turn your idea into a video that attracts customers",
+        desc: "Tell us about your business and the type of video you need. We'll reply with a suitable offer shortly.",
         whatsapp: 'RWPST Motion',
-        whatsappSub: '',
+        whatsappSub: 'Message us on WhatsApp now',
         whatsappAria: 'Contact RWPST Motion on WhatsApp',
         floatTooltip: 'Chat with RWPST Motion',
         floatAria: 'Chat with RWPST Motion',
@@ -218,11 +451,10 @@
         emailAria: 'Email us at info.rwpst@gmail.com',
         copyEmailAria: 'Copy email address',
         copyEmailSuccess: 'Email copied',
-        waText: "Hi RWPST MOTION, I'd like to discuss AI video ads for my business.",
-        emailSubject: 'AI Video Ad Inquiry',
+        emailSubject: 'Video Ad Inquiry',
       },
       footer: {
-        tagline: 'AI-Powered Creative Studio',
+        tagline: 'Video Ad Production Studio',
         rights: 'All rights reserved.',
       },
       modal: {
@@ -244,6 +476,15 @@
 
   function getNested(obj, path) {
     return path.split('.').reduce((acc, key) => acc?.[key], obj);
+  }
+
+  function buildWhatsAppUrl(text) {
+    const encoded = encodeURIComponent(text ?? WHATSAPP_MESSAGE);
+    return `https://wa.me/${WHATSAPP_NUMBER.replace('+', '')}?text=${encoded}`;
+  }
+
+  function getWhatsAppUrl() {
+    return buildWhatsAppUrl(WHATSAPP_MESSAGE);
   }
 
   function applyLanguage(lang) {
@@ -282,17 +523,11 @@
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.content = t.meta.description;
 
-    const waUrl = 'https://wa.me/01006786392';
+    const waUrl = getWhatsAppUrl();
 
-    const waLink = document.getElementById('whatsappLink');
-    if (waLink) {
-      waLink.href = waUrl;
-    }
-
-    const waFloat = document.getElementById('whatsappFloat');
-    if (waFloat) {
-      waFloat.href = waUrl;
-    }
+    document.querySelectorAll('a[href*="wa.me"]').forEach((link) => {
+      link.href = waUrl;
+    });
 
     const contactEmail = t.contact.emailAddress || 'info.rwpst@gmail.com';
 
@@ -338,7 +573,15 @@
     initLanguageSwitcher();
   }
 
-  window.RWPST_i18n = { applyLanguage, getLang: () => currentLang, translations };
+  window.RWPST_i18n = {
+    applyLanguage,
+    getLang: () => currentLang,
+    translations,
+    WHATSAPP_NUMBER,
+    WHATSAPP_MESSAGE,
+    getWhatsAppUrl,
+    buildWhatsAppUrl,
+  };
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

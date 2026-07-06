@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="نموذج طلب مشروع — RWPST MOTION. أرسل تفاصيل نشاطك لإنتاج فيديو إعلاني احترافي.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>طلب مشروع — RWPST MOTION</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/project-request.css">
+</head>
+<body class="pr-page">
+
+  <header class="header pr-header" id="header">
+    <nav class="nav container" aria-label="التنقل">
+      <a href="../" class="nav__logo" aria-label="RWPST MOTION الرئيسية">
+        <img src="../assets/logo/logo.png" alt="RWPST Motion" class="nav__logo-img" width="auto" height="70">
+      </a>
+      <a href="../" class="nav__back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        العودة للرئيسية
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="pr-hero">
+      <div class="container">
+        <span class="pr-hero__tag">نموذج طلب المشروع</span>
+        <h1 class="pr-hero__title">أخبرنا عن مشروعك</h1>
+        <p class="pr-hero__subtitle">
+          املأ النموذج بالتفاصيل المطلوبة لبدء إنتاج فيديوك الإعلاني. نحتاج هذه المعلومات بعد تأكيد الدفع.
+        </p>
+        <div class="pr-steps" aria-label="خطوات الطلب">
+          <div class="pr-steps__item pr-steps__item--future">
+            <span class="pr-steps__num">1</span>
+            الدفع
+          </div>
+          <div class="pr-steps__item pr-steps__item--active">
+            <span class="pr-steps__num">2</span>
+            تفاصيل المشروع
+          </div>
+          <div class="pr-steps__item pr-steps__item--future">
+            <span class="pr-steps__num">3</span>
+            بدء الإنتاج
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pr-form-wrap">
+      <div class="container">
+        <form class="pr-form" id="projectRequestForm" novalidate>
+
+          <div class="pr-payment-banner" id="paymentBanner" hidden></div>
+
+          <div class="pr-form__error" id="formError" role="alert" tabindex="-1" hidden></div>
+
+          <!-- Contact -->
+          <fieldset class="pr-section">
+            <legend class="pr-section__title">معلومات التواصل</legend>
+
+            <div class="pr-field">
+              <label class="pr-field__label" for="fullName">
+                الاسم الكامل <span class="pr-required" aria-hidden="true">*</span>
+              </label>
+              <input class="pr-input" type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="مثال: أحمد محمد">
+            </div>
+
+            <div class="pr-field">
+              <label class="pr-field__label" for="phone">
+                رقم الهاتف <span class="pr-required" aria-hidden="true">*</span>
+              </label>
+              <input class="pr-input" type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="01xxxxxxxxx" dir="ltr" inputmode="tel">
+            </div>
+
+            <div class="pr-field">
+              <label class="pr-field__label" for="businessName">
+                اسم النشاط <span class="pr-required" aria-hidden="true">*</span>
+              </label>
+              <input class="pr-input" type="text" id="businessName" name="businessName" required placeholder="مثال: مطعم النخبة">
+            </div>
+          </fieldset>
+
+          <!-- Business -->
+          <fieldset class="pr-section">
+            <legend class="pr-section__title">تفاصيل النشاط</legend>
+
+            <div class="pr-field">
+              <span class="pr-field__label">
+                نوع النشاط <span class="pr-required" aria-hidden="true">*</span>
+              </span>
+              <div class="pr-options pr-options--grid" role="radiogroup" aria-label="نوع النشاط">
+                <label class="pr-option">
+                  <input type="radio" name="businessType" value="restaurant" required>
+                  <span class="pr-option__text">مطعم</span>
+                </label>
+                <label class="pr-option">
+                  <input type="radio" name="businessType" value="clinic">
+                  <span class="pr-option__text">عيادة</span>
+                </label>
+                <label class="pr-option">
+                  <input type="radio" name="businessType" value="real_estate">
+                  <span class="pr-option__text">عقارات</span>
+                </label>
+                <label class="pr-option">
+                  <input type="radio" name="businessType" value="store">
+                  <span class="pr-option__text">متجر</span>
+                </label>
+                <label class="pr-option">
+                  <input type="radio" name="businessType" value="other">
+                  <span class="pr-option__text">أخرى</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="pr-field" id="businessTypeOtherWrap" hidden>
+              <label class="pr-field__label" for="businessTypeOther">حدد نوع النشاط</label>
+              <input class="pr-input" type="text" id="businessTypeOther" name="businessTypeOther" placeholder="مثال: صالون تجميل">
+            </div>
+
+            <div class="pr-field">
+              <label class="pr-field__label" for="businessDescription">
+                وصف النشاط <span class="pr-required" aria-hidden="true">*</span>
+              </label>
+              <textarea class="pr-textarea" id="businessDescription" name="businessDescription" required placeholder="صف نشاطك، الخدمات أو المنتجات التي تقدمها، وما يميزك عن المنافسين..."></textarea>
+            </div>
+          </fieldset>
+
+          <!-- Social -->
+          <fieldset class="pr-section">
+            <legend class="pr-section__title">الروابط والحضور الرقمي</legend>
+
+            <div class="pr-field">
+              <label class="pr-field__label" for="facebookUrl">رابط صفحة فيسبوك</label>
+              <input class="pr-input" type="url" id="facebookUrl" name="facebookUrl" placeholder="https://facebook.com/..." dir="ltr">
+            </div>
+
+            <div class="pr-field">
+              <label class="pr-field__label" for="instagramUrl">رابط انستغرام</label>
+              <input class="pr-input" type="url" id="instagramUrl" name="instagramUrl" placeholder="https://instagram.com/..." dir="ltr">
+            </div>
+
+            <div class="pr-field">
+              <label class="pr-field__label" for="websiteUrl">رابط الموقع الإلكتروني</label>
+              <input class="pr-input" type="url" id="websiteUrl" name="websiteUrl" placeholder="https://example.com" dir="ltr">
+            </div>
+          </fieldset>
+
+          <!-- Video goal -->
+          <fieldset class="pr-section">
+            <legend class="pr-section__title">هدف الفيديو</legend>
+
+            <div class="pr-field">
+              <span class="pr-field__label">
+                ما الهدف من الفيديو؟ <span class="pr-required" aria-hidden="true">*</span>
+              </span>
+              <div class="pr-options" role="radiogroup" aria-label="هدف الفيديو">
+                <label class="pr-option">
+                  <input type="radio" name="videoGoal" value="more_customers" required>
+                  <span class="pr-option__text">جذب عملاء أكثر</span>
+                </label>
+                <label class="pr-option">
+                  <input type="radio" name="videoGoal" value="more_messages">
+                  <span class="pr-option__text">زيادة الرسائل</span>
+                </label>
+                <label class="pr-option">
+                  <input type="radio" name="videoGoal" value="more_sales">
+                  <span class="pr-option__text">زيادة المبيعات</span>
+                </label>
+                <label class="pr-option">
+                  <input type="radio" name="videoGoal" value="brand_awareness">
+                  <span class="pr-option__text">الوعي بالعلامة التجارية</span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Uploads -->
+          <fieldset class="pr-section">
+            <legend class="pr-section__title">الملفات والمواد</legend>
+
+            <div class="pr-field">
+              <span class="pr-field__label">رفع الشعار</span>
+              <div class="pr-file">
+                <label class="pr-file__drop" for="logo">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 16V4m0 0L8 8m4-4l4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+                  <span class="pr-file__drop-text">اختر ملف الشعار</span>
+                  <span class="pr-file__drop-hint">PNG, JPG, SVG — حتى 25 م.ب</span>
+                </label>
+                <input class="pr-file-input" type="file" id="logo" name="logo" accept="image/*,.svg" data-file-list="logoFileList">
+              </div>
+              <ul class="pr-file-list" id="logoFileList" aria-live="polite"></ul>
+            </div>
+
+            <div class="pr-field">
+              <span class="pr-field__label">رفع صور</span>
+              <div class="pr-file">
+                <label class="pr-file__drop" for="images">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 16V4m0 0L8 8m4-4l4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+                  <span class="pr-file__drop-text">اختر صور المنتجات أو المكان</span>
+                  <span class="pr-file__drop-hint">يمكن اختيار أكثر من صورة</span>
+                </label>
+                <input class="pr-file-input" type="file" id="images" name="images" accept="image/*" multiple data-file-list="imagesFileList">
+              </div>
+              <ul class="pr-file-list" id="imagesFileList" aria-live="polite"></ul>
+            </div>
+
+            <div class="pr-field">
+              <span class="pr-field__label">رفع فيديو</span>
+              <div class="pr-file">
+                <label class="pr-file__drop" for="videos">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 16V4m0 0L8 8m4-4l4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+                  <span class="pr-file__drop-text">اختر فيديوهات مرجعية (إن وجدت)</span>
+                  <span class="pr-file__drop-hint">MP4, MOV — حتى 25 م.ب لكل ملف</span>
+                </label>
+                <input class="pr-file-input" type="file" id="videos" name="videos" accept="video/*" multiple data-file-list="videosFileList">
+              </div>
+              <ul class="pr-file-list" id="videosFileList" aria-live="polite"></ul>
+            </div>
+          </fieldset>
+
+          <!-- Notes -->
+          <fieldset class="pr-section">
+            <legend class="pr-section__title">ملاحظات إضافية</legend>
+            <div class="pr-field">
+              <label class="pr-field__label" for="additionalNotes">أي تفاصيل أخرى تود إضافتها</label>
+              <textarea class="pr-textarea" id="additionalNotes" name="additionalNotes" placeholder="أفكار للفيديو، أسلوب مفضل، موعد التسليم المطلوب..."></textarea>
+            </div>
+          </fieldset>
+
+          <div class="pr-submit-wrap">
+            <button type="submit" class="btn btn--primary pr-submit" id="submitBtn">إرسال الطلب</button>
+            <p class="pr-submit-note">بالضغط على «إرسال الطلب» أنت توافق على استخدام بياناتك لإنتاج الفيديو الإعلاني.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../" class="footer__logo" aria-label="RWPST MOTION الرئيسية">
+        <img src="../assets/logo/logo.png" alt="RWPST Motion" class="footer__logo-img" width="auto" height="52">
+      </a>
+      <p class="footer__tagline">استوديو إنتاج فيديوهات إعلانية</p>
+      <p class="footer__copy">&copy; <span id="year"></span> RWPST MOTION. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/supabase-env.js"></script>
+  <script src="../services/projectRequestService.js"></script>
+  <script src="../assets/js/project-request-config.js" defer></script>
+  <script src="../assets/js/project-request.js" defer></script>
+</body>
+</html>
