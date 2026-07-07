@@ -6,8 +6,8 @@
   'use strict';
 
   window.RWPST_SUPABASE = {
-    url: 'https://krxwcyfohwzmpovvxwhv.supabase.co',
-    anonKey: 'USE_ENV_PLACEHOLDER',
+    url: 'https://krxwcyfohwzmpovvxwhv.supabase.co/rest/v1/',
+    anonKey: 'sb_publishable_U5uqlibg4R2YpLqHC59LUg_al8f4JB5',
     storageBucket: 'project-assets',
   };
 })();
