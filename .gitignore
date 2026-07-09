@@ -1,0 +1,7 @@
+node_modules/
+package.json
+package-lock.json
+output/
+_debug_tmp/
+assets/videos/
+assets/videos/*.mp4

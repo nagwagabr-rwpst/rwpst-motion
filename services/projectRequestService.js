@@ -91,8 +91,16 @@
 
   function sanitizeFileName(name) {
     const base = String(name || 'file').split(/[/\\]/).pop() || 'file';
-    const sanitized = base.replace(/[^\w.\-()+\s\u0600-\u06FF]/g, '_').replace(/\s+/g, '_');
-    return sanitized.slice(0, 180) || 'file';
+    const lastDot = base.lastIndexOf('.');
+    const hasExtension = lastDot > 0 && lastDot < base.length - 1;
+    const stem = hasExtension ? base.slice(0, lastDot) : base;
+    const extension = hasExtension ? base.slice(lastDot) : '';
+
+    // Keep storage object keys ASCII-safe to avoid Supabase InvalidKey errors.
+    const safeStem = stem.replace(/[^a-zA-Z0-9_.-]/g, '_');
+    const normalizedStem = safeStem.replace(/_+/g, '_').replace(/^[_.-]+|[_.-]+$/g, '') || 'file';
+
+    return `${normalizedStem.slice(0, 180)}${extension}`;
   }
 
   function formatBytes(bytes) {
@@ -181,14 +189,13 @@
   }
 
   async function insertRequestFile(client, requestId, file, fileType, filePath, fileUrl) {
-    const { error } = await client.from('request_files').insert({
-      request_id: requestId,
-      file_type: fileType,
-      file_name: file.name,
-      file_path: filePath,
-      file_url: fileUrl,
-      mime_type: file.type,
-      file_size: file.size,
+    const { error } = await client.rpc('insert_request_file', {
+      p_request_id: requestId,
+      p_file_type: fileType,
+      p_file_name: file.name,
+      p_file_url: fileUrl,
+      p_mime_type: file.type,
+      p_file_size: file.size,
     });
 
     if (error) {
