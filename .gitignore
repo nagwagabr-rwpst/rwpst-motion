@@ -3,5 +3,7 @@ package.json
 package-lock.json
 output/
 _debug_tmp/
-assets/videos/
-assets/videos/*.mp4
+
+# Local portfolio video files — production serves from Supabase portfolio-assets bucket
+assets/videos/*
+!assets/videos/.gitkeep

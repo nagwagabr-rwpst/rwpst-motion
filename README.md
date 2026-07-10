@@ -17,16 +17,13 @@ deployment/
     │   └── styles.css
     ├── js/
     │   ├── main.js
-    │   └── i18n.js
+    │   ├── i18n.js
+    │   └── portfolio-videos.js   # Supabase portfolio video base URL
     └── videos/
-        ├── watch-ad.mp4
-        ├── perfume-ad.mp4
-        ├── burger-ad.mp4
-        ├── clinic-ad.mp4
-        └── realestate.mp4
+        └── .gitkeep                # Placeholder only — MP4s are not stored in Git
 ```
 
-All asset paths are **relative** (e.g. `assets/css/styles.css`, `assets/videos/watch-ad.mp4`) so the site works at the domain root without a build step.
+Static asset paths (CSS, JS, images) are **relative** (e.g. `assets/css/styles.css`) so the site works at the domain root without a build step. Portfolio showcase videos are loaded from **Supabase Storage**, not from this repository.
 
 ## Local preview
 
@@ -112,27 +109,25 @@ At your domain registrar (or DNS provider), add:
 1. **Settings → Pages → Custom domain** → enter `rwpst.com`
 2. Enable **Enforce HTTPS** once DNS has propagated (can take up to 24 hours)
 
-## Video assets
+## Portfolio video assets
 
-Portfolio videos are served as static MP4 files from `assets/videos/`.
+Production portfolio videos are served from the public Supabase Storage bucket:
 
-| File              | Used by                    |
-|-------------------|----------------------------|
-| `watch-ad.mp4`    | Watch Ad                   |
-| `perfume-ad.mp4`  | Perfume Ad                 |
-| `burger-ad.mp4`   | Burger Ad                  |
-| `clinic-ad.mp4`   | Speech Therapy Clinic Ad   |
-| `realestate.mp4`  | Real Estate Ad (wide card) |
+```
+portfolio-assets/videos/
+```
 
-**GitHub limits:** individual files must be under **100 MB**. Current videos are within that limit.
+The base URL is configured once in `assets/js/portfolio-videos.js` (`PORTFOLIO_VIDEO_BASE_URL`). Each card in `index.html` references a filename via `data-video="filename.mp4"`; JavaScript resolves the full public URL at runtime.
 
-**Adding or replacing videos:**
+The local `assets/videos/` folder is **not** used in production. Only `.gitkeep` is committed so the directory exists in the repo; any local `.mp4` copies are gitignored for optional offline development.
 
-1. Place `.mp4` files in `assets/videos/`
-2. Keep filenames lowercase with hyphens (matches `index.html` `<source>` paths)
-3. Commit and push — no code changes needed if filenames stay the same
+**Adding or replacing a portfolio video:**
 
-If videos grow beyond 100 MB, use [Git LFS](https://git-lfs.github.com/) or host videos on a CDN and update the `<source src="...">` paths.
+1. Upload the `.mp4` to Supabase Storage → bucket `portfolio-assets` → folder `videos/`
+2. Use the exact filename in `index.html` (`data-video="your-file.mp4"`)
+3. If the Supabase project URL changes, update `PORTFOLIO_VIDEO_BASE_URL` in `assets/js/portfolio-videos.js` only
+
+Do not commit portfolio MP4s to Git — they are excluded by `.gitignore`.
 
 ## Mobile responsiveness
 
@@ -158,7 +153,7 @@ Test on real devices or Chrome DevTools: iPhone SE, iPhone 14, iPad, and desktop
 
 - [ ] `https://rwpst.com` loads `index.html`
 - [ ] Logo appears in navbar and footer
-- [ ] All 5 portfolio videos play
+- [ ] All portfolio videos play (loaded from Supabase `portfolio-assets/videos`)
 - [ ] Real Estate ad opens landscape lightbox modal
 - [ ] WhatsApp links open `https://wa.me/01006786392`
 - [ ] AR / EN language switch works
@@ -171,7 +166,7 @@ Test on real devices or Chrome DevTools: iPhone SE, iPhone 14, iPad, and desktop
 |-----------------------|----------------------------------------------------|
 | Page copy (AR / EN)   | `assets/js/i18n.js`                                |
 | Styles / layout       | `assets/css/styles.css`                            |
-| Portfolio videos      | `assets/videos/` + `index.html` if filenames change |
+| Portfolio videos      | Supabase `portfolio-assets/videos/` + `index.html` (`data-video`) + `assets/js/portfolio-videos.js` |
 | Logo                  | `assets/Brand/logo.png`                            |
 | WhatsApp number       | `index.html` + `assets/js/i18n.js` (`waUrl`)       |
 | SEO / domain meta     | `index.html` `<head>`                              |
@@ -184,8 +179,9 @@ After edits, commit and push. GitHub Pages redeploys automatically.
 Confirm GitHub Pages folder is set to `/deployment` and paths start with `assets/` (no leading `/`).
 
 **Videos show “Add Video” placeholder**  
-- Check the file exists in `assets/videos/` with exact filename casing  
-- Ensure the file was committed and pushed (not in `.gitignore`)  
+- Confirm the file exists in Supabase Storage: bucket `portfolio-assets`, path `videos/<filename>`  
+- Check the filename in `index.html` `data-video` matches exactly (including casing)  
+- Verify `PORTFOLIO_VIDEO_BASE_URL` in `assets/js/portfolio-videos.js` points to your Supabase project  
 - Hard-refresh the browser (`Ctrl+Shift+R`)
 
 **Custom domain not working**  
@@ -194,7 +190,7 @@ Confirm GitHub Pages folder is set to `/deployment` and paths start with `assets
 - Check **Settings → Pages** for DNS verification status
 
 **Large push fails**  
-Video files are ~60 MB total. If push times out, use Git LFS or split large assets.
+Portfolio videos are hosted on Supabase, not in this repo. If other large assets cause push issues, use Git LFS or external hosting.
 
 ---
 

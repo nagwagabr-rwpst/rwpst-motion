@@ -17,6 +17,41 @@
   const emailCopyBtn = document.getElementById('emailCopyBtn');
 
   const CONTACT_EMAIL = 'info.rwpst@gmail.com';
+  const PORTFOLIO_VIDEO_BASE_URL = window.PORTFOLIO_VIDEO_BASE_URL || '';
+
+  function getPortfolioVideoUrl(filename) {
+    return PORTFOLIO_VIDEO_BASE_URL + filename;
+  }
+
+  function resolvePortfolioVideoSources() {
+    document.querySelectorAll('.portfolio__video source[data-video]').forEach((source) => {
+      const filename = source.getAttribute('data-video');
+      if (!filename) return;
+
+      const url = getPortfolioVideoUrl(filename);
+      const video = source.closest('.portfolio__video');
+      const isLazy = Boolean(video && video.closest('#portfolio'));
+
+      if (isLazy) {
+        source.setAttribute('data-src', url);
+      } else {
+        source.setAttribute('src', url);
+      }
+    });
+  }
+
+  function ensurePortfolioVideoSourceLoaded(video) {
+    const source = video?.querySelector('source');
+    if (!source) return;
+
+    if (!source.getAttribute('src')) {
+      const dataSrc = source.getAttribute('data-src');
+      if (dataSrc) {
+        source.setAttribute('src', dataSrc);
+        video.load();
+      }
+    }
+  }
 
   /* --- Init --- */
   function init() {
@@ -25,6 +60,7 @@
     initMobileNav();
     initSmoothNav();
     initRevealAnimations();
+    resolvePortfolioVideoSources();
     initPortfolioVideos();
     initPortfolioTabs();
     initVideoModal();
@@ -283,9 +319,14 @@
       if (!source) return;
 
       const src = source.getAttribute('src');
-      if (src) {
+      const dataSrc = source.getAttribute('data-src');
+
+      if (src && !dataSrc) {
         source.setAttribute('data-src', src);
         source.removeAttribute('src');
+      }
+
+      if (dataSrc || src) {
         video.setAttribute('preload', 'none');
       }
     });
@@ -367,6 +408,7 @@
       if (!video || !playBtn || !wrap) return;
 
       const openVideo = () => {
+        ensurePortfolioVideoSourceLoaded(video);
         const orientation = card.dataset.orientation || getVideoOrientation(video);
         openModalWithVideo(video, orientation);
       };
