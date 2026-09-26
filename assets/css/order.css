@@ -1,0 +1,198 @@
+/**
+ * RWPST MOTION — 199 EGP trial order
+ * Extends project-request.css. Same navy, blue, and type.
+ */
+
+.order-offer {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--brand-gold);
+  background: rgba(243, 179, 76, 0.12);
+  border: 1px solid rgba(243, 179, 76, 0.28);
+  border-radius: var(--radius-full);
+}
+
+.order-fixed {
+  margin: 0;
+  padding: 0.875rem 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background: rgba(36, 93, 255, 0.1);
+  border: 1px solid rgba(62, 139, 255, 0.45);
+  border-radius: var(--radius-md);
+}
+
+.pr-input[aria-invalid="true"],
+.pr-textarea[aria-invalid="true"] {
+  border-color: rgba(220, 53, 69, 0.75);
+}
+
+.order-files {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.order-files:empty {
+  display: none;
+}
+
+.order-file {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.65rem;
+  background: rgba(221, 232, 255, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.order-file__preview {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  background: rgba(3, 11, 31, 0.6);
+}
+
+.order-file__meta {
+  min-width: 0;
+  flex: 1;
+}
+
+.order-file__name {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.order-file__size {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.75rem;
+  color: var(--color-text-dim);
+}
+
+.order-file__remove {
+  flex-shrink: 0;
+  padding: 0.4rem 0.7rem;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #ffb4b4;
+  background: rgba(220, 53, 69, 0.12);
+  border: 1px solid rgba(220, 53, 69, 0.35);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.order-file__remove:hover {
+  background: rgba(220, 53, 69, 0.22);
+}
+
+.order-summary {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem 1.25rem 1.1rem;
+  background: var(--color-bg-card);
+  border: 1px solid rgba(62, 139, 255, 0.35);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.order-summary__title {
+  margin-bottom: 1rem;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.order-summary__rows {
+  margin: 0 0 1rem;
+}
+
+.order-summary__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.order-summary__row dt {
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.order-summary__row dd {
+  margin: 0;
+  font-weight: 700;
+  text-align: start;
+}
+
+.order-summary__price {
+  color: var(--brand-gold);
+  font-size: 1.05rem;
+}
+
+.order-summary__includes {
+  margin: 0 0 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.order-summary__list {
+  margin: 0;
+  padding-inline-start: 1.15rem;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+}
+
+.order-summary__note {
+  margin: 1rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--color-text-dim);
+}
+
+.order-progress {
+  margin-top: 1rem;
+}
+
+.order-progress__text {
+  margin-bottom: 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.order-progress__bar {
+  height: 0.35rem;
+  overflow: hidden;
+  background: rgba(221, 232, 255, 0.08);
+  border-radius: var(--radius-full);
+}
+
+.order-progress__bar span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--brand-blue), var(--brand-electric));
+  transition: width var(--transition-fast);
+}
+
+@media (min-width: 640px) {
+  .order-summary {
+    padding: 1.5rem 1.5rem 1.25rem;
+  }
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="اطلب أول فيديو إعلاني لمطعمك — 199 جنيه. أرسل بيانات المطعم وصور الأطباق.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>ابدأ فيديو مطعمك — RWPST MOTION</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/project-request.css">
+  <link rel="stylesheet" href="../assets/css/order.css">
+</head>
+<body class="pr-page">
+
+  <header class="header pr-header" id="header">
+    <nav class="nav container" aria-label="التنقل">
+      <a href="../" class="nav__logo" aria-label="RWPST MOTION الرئيسية">
+        <img src="../assets/logo/logo.png" alt="RWPST Motion" class="nav__logo-img" width="auto" height="70">
+      </a>
+      <a href="../" class="nav__back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        العودة للرئيسية
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="pr-hero">
+      <div class="container">
+        <h1 class="pr-hero__title">ابدأ فيديو مطعمك بـ199 جنيه</h1>
+        <p class="pr-hero__subtitle">أرسل لنا بيانات مطعمك وصور الأطباق، وسنستخدمها لتجهيز أول فيديو إعلاني لك.</p>
+        <p class="order-offer">أول فيديو إعلاني تجريبي — 199 جنيه</p>
+      </div>
+    </section>
+
+    <section class="pr-form-wrap">
+      <div class="container">
+        <form class="pr-form" id="trialOrderForm" novalidate>
+
+          <div class="pr-form__error" id="formError" role="alert" tabindex="-1" hidden></div>
+
+          <fieldset class="pr-section">
+            <legend class="pr-section__title">بيانات المطعم</legend>
+
+            <div class="pr-field">
+              <label class="pr-field__label" for="customerName">
+                اسم العميل <span class="pr-required" aria-hidden="true">*</span>
+              </label>
+              <input class="pr-input" type="text" id="customerName" name="customerName" autocomplete="name" aria-required="true" placeholder="مثال: أحمد محمد">
+            </div>
+
+            <div class="pr-field">
+              <label class="pr-field__label" for="businessName">
+                اسم المطعم / النشاط <span class="pr-required" aria-hidden="true">*</span>
+              </label>
+              <input class="pr-input" type="text" id="businessName" name="businessName" autocomplete="organization" aria-required="true" placeholder="مثال: مطعم النخبة">
+            </div>
+
+            <div class="pr-field">
+              <label class="pr-field__label" for="whatsapp">
+                رقم واتساب <span class="pr-required" aria-hidden="true">*</span>
+              </label>
+              <input class="pr-input" type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" inputmode="tel" dir="ltr" aria-required="true" placeholder="01xxxxxxxxx">
+            </div>
+
+            <div class="pr-field">
+              <label class="pr-field__label" for="city">
+                المحافظة / المدينة <span class="pr-required" aria-hidden="true">*</span>
+              </label>
+              <input class="pr-input" type="text" id="city" name="city" autocomplete="address-level1" aria-required="true" placeholder="مثلاً: القاهرة">
+            </div>
+
+            <div class="pr-field">
+              <label class="pr-field__label" for="email">البريد الإلكتروني</label>
+              <input class="pr-input" type="email" id="email" name="email" autocomplete="email" inputmode="email" dir="ltr" placeholder="name@email.com">
+            </div>
+          </fieldset>
+
+          <fieldset class="pr-section">
+            <legend class="pr-section__title">الفيديو</legend>
+
+            <div class="pr-field">
+              <span class="pr-field__label">نوع النشاط</span>
+              <p class="order-fixed">مطعم</p>
+              <input type="hidden" name="businessType" value="restaurant">
+            </div>
+
+            <div class="pr-field">
+              <span class="pr-field__label" id="videoTypeLabel">نوع الفيديو المطلوب</span>
+              <div class="pr-options" role="radiogroup" aria-labelledby="videoTypeLabel">
+                <label class="pr-option">
+                  <input type="radio" name="videoType" id="videoTypeDish" value="dish_ad" checked>
+                  <span class="pr-option__text">إعلان منتج / طبق</span>
+                </label>
+                <label class="pr-option">
+                  <input type="radio" name="videoType" value="offer">
+                  <span class="pr-option__text">عرض أو خصم</span>
+                </label>
+                <label class="pr-option">
+                  <input type="radio" name="videoType" value="restaurant_ad">
+                  <span class="pr-option__text">إعلان عام للمطعم</span>
+                </label>
+                <label class="pr-option">
+                  <input type="radio" name="videoType" value="other">
+                  <span class="pr-option__text">غير ذلك</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="pr-field">
+              <label class="pr-field__label" for="videoDescription">وصف مختصر للفيديو أو العرض</label>
+              <textarea class="pr-textarea" id="videoDescription" name="videoDescription" placeholder="مثلاً: عايز إعلان لوجبة الجمبري المشوي مع عرض خاص..."></textarea>
+            </div>
+
+            <div class="pr-field">
+              <span class="pr-field__label" id="scriptLabel">هل لديك نص أو فكرة محددة؟</span>
+              <div class="pr-options" role="radiogroup" aria-labelledby="scriptLabel">
+                <label class="pr-option">
+                  <input type="radio" name="hasScript" value="yes">
+                  <span class="pr-option__text">نعم</span>
+                </label>
+                <label class="pr-option">
+                  <input type="radio" name="hasScript" value="no" checked>
+                  <span class="pr-option__text">لا، اتركوا اقتراح الفكرة لنا</span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="pr-section">
+            <legend class="pr-section__title">ارفع صور أطباقك</legend>
+            <div class="pr-field">
+              <p class="pr-field__hint" id="uploadHint">يمكنك رفع صور الأطباق التي تريد استخدامها في الفيديو.</p>
+              <div class="pr-file">
+                <label class="pr-file__drop" for="dishImages">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 16V4m0 0L8 8m4-4l4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+                  <span class="pr-file__drop-text">اختر صور الأطباق</span>
+                  <span class="pr-file__drop-hint">JPG أو PNG أو WEBP — حتى 8 صور، 10 ميجا للصورة</span>
+                </label>
+                <input class="pr-file-input" type="file" id="dishImages" name="dishImages" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" multiple aria-describedby="uploadHint">
+              </div>
+              <ul class="order-files" id="dishFileList" aria-live="polite"></ul>
+            </div>
+          </fieldset>
+
+          <fieldset class="pr-section">
+            <legend class="pr-section__title" id="notesLabel">ملاحظات إضافية</legend>
+            <div class="pr-field">
+              <textarea class="pr-textarea" id="notes" name="notes" aria-labelledby="notesLabel" placeholder="أي تفاصيل أو تعليمات تريد منا معرفتها قبل تنفيذ الفيديو..."></textarea>
+            </div>
+          </fieldset>
+
+          <section class="order-summary" aria-label="ملخص الطلب">
+            <h2 class="order-summary__title">ملخص الطلب</h2>
+            <dl class="order-summary__rows">
+              <div class="order-summary__row">
+                <dt>الخدمة</dt>
+                <dd>أول فيديو إعلاني تجريبي</dd>
+              </div>
+              <div class="order-summary__row">
+                <dt>السعر</dt>
+                <dd class="order-summary__price">199 جنيه</dd>
+              </div>
+            </dl>
+            <p class="order-summary__includes">يشمل:</p>
+            <ul class="order-summary__list">
+              <li>فيديو حتى 30 ثانية</li>
+              <li>باستخدام صورك الحالية</li>
+              <li>تسليم سريع خلال 48 ساعة</li>
+              <li>تعديل واحد</li>
+            </ul>
+            <p class="order-summary__note">لم يتم الدفع بعد. إرسال الطلب يحفظ بياناتك وصورك، والدفع خطوة لاحقة على واتساب.</p>
+          </section>
+
+          <div class="pr-submit-wrap">
+            <button type="submit" class="btn btn--primary pr-submit" id="submitBtn">إرسال طلب الفيديو</button>
+            <div class="order-progress" id="orderProgress" hidden>
+              <p class="order-progress__text" id="orderProgressText" aria-live="polite"></p>
+              <div class="order-progress__bar" aria-hidden="true"><span id="orderProgressFill"></span></div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../" class="footer__logo" aria-label="RWPST MOTION الرئيسية">
+        <img src="../assets/logo/logo.png" alt="RWPST Motion" class="footer__logo-img" width="auto" height="52">
+      </a>
+      <p class="footer__copy">&copy; <span id="year"></span> RWPST MOTION. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/supabase-env.js"></script>
+  <script src="../services/projectRequestService.js"></script>
+  <script src="../assets/js/trial-order.js" defer></script>
+</body>
+</html>

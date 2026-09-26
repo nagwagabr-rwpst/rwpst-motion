@@ -75,10 +75,17 @@
     business_type_other: 'يرجى تحديد نوع النشاط',
     business_description: 'يرجى إدخال وصف النشاط',
     video_goal: 'يرجى اختيار هدف الفيديو',
+    customer_name: 'من فضلك أدخل اسم العميل.',
+    whatsapp: 'من فضلك أدخل رقم واتساب صحيح.',
+    city: 'من فضلك أدخل المحافظة أو المدينة.',
+    email: 'من فضلك أدخل بريدًا إلكترونيًا صحيحًا.',
+    video_type: 'من فضلك اختر نوع الفيديو.',
+    video_description: 'وصف الفيديو طويل جدًا.',
+    notes: 'الملاحظات طويلة جدًا.',
   };
 
   function mapRpcError(message) {
-    const match = String(message || '').match(/^VALIDATION:([^:]+):/);
+    const match = String(message || '').match(/VALIDATION:([^:]+):/);
     if (match && RPC_VALIDATION_MESSAGES[match[1]]) {
       return RPC_VALIDATION_MESSAGES[match[1]];
     }
@@ -300,7 +307,127 @@
     };
   }
 
+  const TRIAL_IMAGE_MIME = {
+    jpg: 'image/jpeg',
+    jpeg: 'image/jpeg',
+    png: 'image/png',
+    webp: 'image/webp',
+  };
+
+  const MAX_TRIAL_IMAGES = 8;
+
+  function fileExtension(name) {
+    const base = String(name || '').split(/[/\\]/).pop() || '';
+    const dot = base.lastIndexOf('.');
+    if (dot <= 0 || dot === base.length - 1) return '';
+    return base.slice(dot + 1).toLowerCase();
+  }
+
+  function prepareTrialImage(file) {
+    const ext = fileExtension(file.name);
+    const mime = TRIAL_IMAGE_MIME[ext];
+    const label = `نوع الصورة "${file.name}" غير مدعوم. الأنواع المسموحة: JPG, PNG, WEBP`;
+
+    if (!mime || /\.(exe|bat|cmd|com|msi|js|mjs|html?|svg|php|sh|ps1|dll)(\.|$)/i.test(file.name)) {
+      throw new Error(label);
+    }
+
+    const declared = file.type || '';
+    const jpegAlias = mime === 'image/jpeg' && (declared === 'image/jpg' || declared === 'image/pjpeg');
+    if (declared && declared !== 'application/octet-stream' && declared !== mime && !jpegAlias) {
+      throw new Error(label);
+    }
+
+    if (file.type === mime) return file;
+    return new File([file], file.name, { type: mime, lastModified: file.lastModified });
+  }
+
+  /**
+   * Submit the 199 EGP restaurant trial order.
+   * Price and offer type are fixed inside create_trial_order — the client cannot set them.
+   * @param {object} fields
+   * @param {File[]} files
+   * @param {(progress: {phase: string, current: number, total: number, name?: string}) => void} [onProgress]
+   * @returns {Promise<{ id: string, requestNumber: string }>}
+   */
+  async function submitTrialOrder(fields, files, onProgress) {
+    const client = getClient();
+    const imageFiles = (files || []).filter(isFile).map(prepareTrialImage);
+
+    if (!imageFiles.length) {
+      throw new Error('من فضلك ارفع صورة واحدة على الأقل.');
+    }
+
+    if (imageFiles.length > MAX_TRIAL_IMAGES) {
+      throw new Error('يمكنك رفع 8 صور كحد أقصى.');
+    }
+
+    for (const file of imageFiles) {
+      const validationError = validateFile(file, 'image');
+      if (validationError) throw new Error(validationError);
+    }
+
+    const notify = typeof onProgress === 'function' ? onProgress : () => {};
+    notify({ phase: 'saving', current: 0, total: imageFiles.length });
+
+    const email = trim(fields.email);
+    const description = trim(fields.videoDescription);
+    const notes = trim(fields.notes);
+
+    const { data, error } = await client.rpc('create_trial_order', {
+      p_customer_name: trim(fields.customerName),
+      p_business_name: trim(fields.businessName),
+      p_whatsapp: trim(fields.whatsapp),
+      p_city: trim(fields.city),
+      p_email: email || null,
+      p_business_type: 'restaurant',
+      p_video_type: trim(fields.videoType) || 'dish_ad',
+      p_video_description: description || null,
+      p_has_script_or_idea: fields.hasScriptOrIdea === true,
+      p_notes: notes || null,
+    });
+
+    if (error) {
+      throw new Error(mapRpcError(error.message));
+    }
+
+    const result = Array.isArray(data) ? data[0] : data;
+    if (!result?.id || !result?.request_number) {
+      throw new Error('Invalid response from server');
+    }
+
+    const requestId = result.id;
+    const uploadedPaths = [];
+
+    try {
+      for (let index = 0; index < imageFiles.length; index += 1) {
+        const file = imageFiles[index];
+        notify({
+          phase: 'uploading',
+          current: index + 1,
+          total: imageFiles.length,
+          name: file.name,
+        });
+
+        const { filePath, fileUrl } = await uploadFileToStorage(client, requestId, file, 'image');
+        uploadedPaths.push(filePath);
+        await insertRequestFile(client, requestId, file, 'image', filePath, fileUrl);
+      }
+    } catch (err) {
+      await rollbackRequest(client, requestId, uploadedPaths);
+      throw err;
+    }
+
+    notify({ phase: 'done', current: imageFiles.length, total: imageFiles.length });
+
+    return {
+      id: requestId,
+      requestNumber: result.request_number,
+    };
+  }
+
   window.RWPST_ProjectRequestService = {
     submitProjectRequest,
+    submitTrialOrder,
   };
 })();

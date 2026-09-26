@@ -8,6 +8,7 @@ In [Supabase Dashboard](https://supabase.com/dashboard) → **SQL Editor**, past
 2. `supabase/migrations/002_create_project_request_rpc.sql`
 3. `supabase/migrations/003_storage_upload_policies.sql`
 4. `supabase/migrations/004_relax_rpc_validation.sql`
+5. `supabase/migrations/011_trial_order.sql` — required before the `/order` form can save a 199 EGP trial. It adds `create_trial_order` and the extra columns on `project_requests`. Run migrations 005–010 first if they are not already on the project.
 
 This creates:
 
