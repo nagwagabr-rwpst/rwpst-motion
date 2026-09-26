@@ -1698,6 +1698,59 @@ ul {
   line-height: 1.65;
 }
 
+/* --- Restaurant proof (portfolio strip) --- */
+.restaurant-proof {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, #0a1428 0%, var(--brand-navy) 100%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(62, 139, 255, 0.06) 0%, transparent 60%);
+}
+
+.restaurant-proof::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(243, 179, 76, 0.45), transparent);
+  opacity: 0.55;
+}
+
+.restaurant-proof__grid {
+  margin-bottom: 2rem;
+}
+
+.restaurant-proof__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.restaurant-proof__actions .btn--whatsapp svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.footer__postpay {
+  margin: 0 0 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.footer__postpay-link {
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast);
+}
+
+.footer__postpay-link:hover {
+  color: var(--brand-gold);
+}
+
 /* --- Testimonials --- */
 .testimonials {
   position: relative;
@@ -2471,6 +2524,7 @@ ul {
   }
 
   .portfolio-featured__grid {
+    grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
   }
 

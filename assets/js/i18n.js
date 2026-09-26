@@ -10,51 +10,60 @@
 
   const WHATSAPP_MESSAGE =
     'مرحباً RWPST MOTION،\n\n' +
-    'أرغب في عمل فيديو إعلاني.\n\n' +
-    'نوع النشاط:\n' +
+    'أرغب في أول فيديو إعلاني لمطعمي (عرض 199 جنيه).\n\n' +
+    'اسم المطعم:\n' +
     '....................\n\n' +
-    'أريد معرفة التفاصيل والأسعار.';
+    'أريد معرفة التفاصيل والبدء.';
 
   const translations = {
     ar: {
       meta: {
-        title: 'RWPST MOTION — فيديوهات إعلانية تجذب العملاء لمشروعك',
-        description: 'RWPST MOTION — استوديو إنتاج فيديوهات إعلانية احترافية للمطاعم والعيادات والمتاجر والعقارات. تسليم خلال 48 ساعة.',
+        title: 'RWPST MOTION — فيديوهات إعلانية للمطاعم تجذب الطلبات',
+        description: 'RWPST MOTION — فيديوهات إعلانية احترافية للمطاعم في مصر. أول فيديو لمطعمك — 199 جنيه فقط. تسليم سريع خلال 48 ساعة.',
       },
       nav: {
         portfolio: 'أعمالنا',
         pricing: 'الباقات',
         services: 'خدماتنا',
-        contact: 'تواصل معنا',
+        contact: 'راسلنا على واتساب',
         toggleMenu: 'فتح القائمة',
         home: 'RWPST MOTION الرئيسية',
       },
       lang: {
-        switcher: 'تبديل اللغة',
+        switcher: 'تبدل اللغة',
         ar: 'العربية',
         en: 'EN',
       },
+      whatsapp: {
+        message:
+          'مرحباً RWPST MOTION،\n\n' +
+          'أرغب في أول فيديو إعلاني لمطعمي (عرض 199 جنيه).\n\n' +
+          'اسم المطعم:\n' +
+          '....................\n\n' +
+          'أريد معرفة التفاصيل والبدء.',
+      },
       hero: {
-        titleHtml: 'فيديوهات إعلانية تساعد مشروعك على <span class="hero__title-accent">جذب المزيد من العملاء</span>',
-        subtitle: 'إنتاج احترافي خلال 48 ساعة للمطاعم والعيادات والعقارات والمتاجر الإلكترونية',
-        ctaPrimary: 'اطلب فيديو الآن',
-        ctaSecondary: 'شاهد النماذج',
-        highlight1: 'يبدأ من 199 جنيه',
-        highlight2: 'تسليم خلال 48 ساعة',
+        titleHtml: 'فيديوهات إعلانية تجذب <span class="hero__title-accent">المزيد من طلبات مطعمك</span>',
+        subtitle: 'إعلانات احترافية للمطاعم — تزيد الطلبات والحجوزات والتوصيل. تسليم سريع خلال 48 ساعة.',
+        ctaPrimary: 'اطلب فيديو مطعمك الآن',
+        ctaSecondary: 'شاهد نماذج المطاعم',
+        highlight1: 'أول فيديو إعلاني لمطعمك — 199 جنيه فقط',
+        highlight2: 'تسليم سريع خلال 48 ساعة',
         highlight3: 'تعديل مجاني',
         scrollTo: 'الانتقال إلى أعمالنا',
       },
       pricing: {
         tag: 'الباقات',
-        title: 'ابدأ أول فيديو إعلاني لمشروعك',
+        title: 'أول فيديو إعلاني لمطعمك',
         starter: {
-          name: 'Starter',
+          name: 'أول فيديو إعلاني لمطعمك — 199 جنيه فقط',
           price: '199 جنيه',
-          f1: 'فيديو إعلاني واحد',
+          f1: 'باستخدام صور مطعمك الحالية',
           f2: 'مدة حتى 30 ثانية',
-          f3: 'تسليم خلال 48 ساعة',
+          f3: 'تسليم سريع خلال 48 ساعة',
           f4: 'تعديل واحد',
-          cta: 'ابدأ الآن',
+          f5: 'جاهز للنشر على السوشيال',
+          cta: 'ابدأ على واتساب',
         },
         growth: {
           badge: 'الأكثر طلباً',
@@ -73,17 +82,17 @@
           f2: 'فيديوهات متعددة',
           f3: 'محتوى مخصص',
           f4: 'حلول تسويقية متكاملة',
-          cta: 'تواصل معنا',
+          cta: 'راسلنا على واتساب',
         },
       },
       portfolio: {
         featured: {
-          title: 'نماذج من أعمالنا',
-          desc: 'شاهد كيف نحول الأفكار إلى فيديوهات إعلانية احترافية.',
+          title: 'نماذج من إعلانات المطاعم',
+          desc: 'فيديوهات حقيقية صنعناها لمطاعم في مصر — اضغط تشغيل للمشاهدة.',
         },
         tag: 'أعمالنا',
         title: 'أعمالنا',
-        desc: 'نماذج حقيقية من فيديوهات صُنعت لأنشطة تجارية مختلفة. اضغط تشغيل للمشاهدة.',
+        desc: 'نماذج حقيقية من إعلانات مطاعم في مصر. اضغط تشغيل للمشاهدة.',
         addVideo: 'أضف فيديو',
         tabs: {
           all: 'الكل',
@@ -163,7 +172,7 @@
         },
         f2: {
           title: 'يزيد فرص الرسائل والاستفسارات',
-          desc: 'العملاء يتواصلون أكثر عندما يرون خدمتك أو منتجك في حركة واضحة.',
+          desc: 'زبائنا يطلبون أكثر عندما يشوفون أطباقك وعروضك في فيديو شهي.',
         },
         f3: {
           title: 'يعرض الخدمة بشكل احترافي',
@@ -177,7 +186,7 @@
       services: {
         tag: 'ما نقدمه',
         title: 'خدماتنا',
-        desc: 'فيديوهات إعلانية مصممة لجذب الانتباه وزيادة الاستفسارات وعرض نشاطك بأفضل صورة.',
+        desc: 'فيديوهات إعلانية للمطاعم تجذب الانتباه وتزيد الطلبات والحجوزات.',
         productTitle: 'إعلانات المنتجات',
         productDesc: 'اعرض منتجاتك بطريقة تجذب الانتباه وتزيد الرسائل والطلبات على متجرك.',
         restaurantTitle: 'إعلانات المطاعم',
@@ -189,35 +198,23 @@
         socialTitle: 'محتوى وسائل التواصل',
         socialDesc: 'محتوى فيديو مستمر يبقي نشاطك ظاهراً ويزيد التفاعل والرسائل على كل منصة.',
       },
-      testimonials: {
-        tag: 'آراء العملاء',
-        title: 'آراء العملاء',
-        placeholder1: {
-          quote: '«تجربة رائعة — الفيديو ساعدنا نجذب عملاء جدد.»',
-          name: 'اسم العميل',
-          business: 'نشاط تجاري',
-        },
-        placeholder2: {
-          quote: '«التسليم كان سريع والنتيجة احترافية جداً.»',
-          name: 'اسم العميل',
-          business: 'مطعم',
-        },
-        placeholder3: {
-          quote: '«زادت رسائل الواتساب بعد نشر الفيديو مباشرة.»',
-          name: 'اسم العميل',
-          business: 'عيادة',
-        },
+      restaurantProof: {
+        tag: 'أعمال حقيقية',
+        title: 'إعلانات مطاعم نفذناها',
+        desc: 'نماذج من فيديوهات صنعناها لمطاعم في مصر — بدون مجاملة واهتمالات.',
+        cta: 'شاهد المزيد في الأعمال',
+        whatsappCta: 'اطلب فيديو مطعمك — 199 جنيه',
       },
       finalCta: {
-        title: 'جاهز لتجربة أول فيديو لمشروعك؟',
-        desc: 'راسلنا الآن واحصل على عرض مناسب لنشاطك.',
+        title: 'جاهز لأول فيديو إعلاني لمطعمك؟',
+        desc: 'راسلنا على واتساب وابدأ بعرض 199 جنيه لأول فيديو.',
         cta: 'راسلنا على واتساب',
         whatsappAria: 'تواصل معنا عبر واتساب',
       },
       contact: {
         tag: 'تواصل معنا',
-        title: 'دعنا نحول فكرتك إلى فيديو يجذب العملاء',
-        desc: 'أخبرنا عن نشاطك ونوع الفيديو الذي تحتاجه. سنرد عليك بعرض مناسب خلال وقت قصير.',
+        title: 'دعنا نصنع إعلان مطعمك التالي',
+        desc: 'اضغط بوتون واتساب أدناه — نرد عليك بتفاصيل عرض 199 جنيه ونبدأ فوراً.',
         whatsapp: 'RWPST Motion',
         whatsappSub: 'راسلنا الآن على واتساب',
         whatsappAria: 'تواصل مع RWPST Motion عبر واتساب',
@@ -231,7 +228,7 @@
         emailSubject: 'استفسار عن فيديو إعلاني',
       },
       footer: {
-        tagline: 'استوديو إنتاج فيديوهات إعلانية',
+        tagline: 'إعلانات فيديو للمطاعم',
         rights: 'جميع الحقوق محفوظة.',
       },
       modal: {
@@ -241,14 +238,14 @@
     },
     en: {
       meta: {
-        title: 'RWPST MOTION — Video Ads That Bring You More Customers',
-        description: 'RWPST MOTION — Professional video ad production for restaurants, clinics, stores, and real estate. Delivered in 48 hours.',
+        title: 'RWPST MOTION — Restaurant Video Ads That Drive Orders',
+        description: 'RWPST MOTION — Professional restaurant video ads in Egypt. First ad for your restaurant — 199 EGP only. Fast delivery within 48 hours.',
       },
       nav: {
         portfolio: 'Portfolio',
         pricing: 'Pricing',
         services: 'Services',
-        contact: 'Contact',
+        contact: 'WhatsApp Us',
         toggleMenu: 'Toggle menu',
         home: 'RWPST MOTION home',
       },
@@ -257,27 +254,36 @@
         ar: 'العربية',
         en: 'EN',
       },
+      whatsapp: {
+        message:
+          'Hi RWPST MOTION,\n\n' +
+          'I want my first restaurant video ad (199 EGP offer).\n\n' +
+          'Restaurant name:\n' +
+          '....................\n\n' +
+          'Please send details to get started.',
+      },
       hero: {
-        titleHtml: 'Video ads that help your business <span class="hero__title-accent">attract more customers</span>',
-        subtitle: 'Professional production in 48 hours for restaurants, clinics, real estate, and e-commerce stores',
-        ctaPrimary: 'Order Your Video Now',
-        ctaSecondary: 'View Samples',
-        highlight1: 'Starting from 199 EGP',
-        highlight2: 'Delivery in 48 hours',
+        titleHtml: 'Video ads that bring <span class="hero__title-accent">more orders to your restaurant</span>',
+        subtitle: 'Professional restaurant ads — more orders, reservations, and delivery. Fast delivery within 48 hours.',
+        ctaPrimary: 'Order Your Restaurant Video',
+        ctaSecondary: 'See Restaurant Samples',
+        highlight1: 'First restaurant video ad — 199 EGP only',
+        highlight2: 'Fast delivery within 48 hours',
         highlight3: 'Free revision',
         scrollTo: 'Scroll to portfolio',
       },
       pricing: {
         tag: 'Pricing',
-        title: 'Start your first video ad for your business',
+        title: 'First video ad for your restaurant',
         starter: {
-          name: 'Starter',
+          name: 'First restaurant video ad — 199 EGP only',
           price: '199 EGP',
-          f1: 'One video ad',
+          f1: 'Using your current restaurant photos',
           f2: 'Up to 30 seconds',
-          f3: 'Delivery in 48 hours',
+          f3: 'Fast delivery within 48 hours',
           f4: 'One revision',
-          cta: 'Get Started',
+          f5: 'Ready to post on social',
+          cta: 'Start on WhatsApp',
         },
         growth: {
           badge: 'Most Popular',
@@ -296,17 +302,17 @@
           f2: 'Multiple videos',
           f3: 'Custom content',
           f4: 'Integrated marketing solutions',
-          cta: 'Contact Us',
+          cta: 'Message on WhatsApp',
         },
       },
       portfolio: {
         featured: {
-          title: 'Samples from Our Work',
-          desc: 'See how we turn ideas into professional video ads.',
+          title: 'Restaurant Ad Samples',
+          desc: 'Real ads we produced for restaurants in Egypt — tap play to watch.',
         },
         tag: 'Our Work',
         title: 'Portfolio',
-        desc: 'Real samples of videos made for different businesses. Click play to watch.',
+        desc: 'Real restaurant ad samples from Egypt. Click play to watch.',
         addVideo: 'Add Video',
         tabs: {
           all: 'All',
@@ -412,35 +418,23 @@
         socialTitle: 'Social Media Content',
         socialDesc: 'Consistent video content that keeps your business visible and drives engagement and messages.',
       },
-      testimonials: {
-        tag: 'Client Reviews',
-        title: 'Client Reviews',
-        placeholder1: {
-          quote: '"Great experience — the video helped us attract new customers."',
-          name: 'Client Name',
-          business: 'Business',
-        },
-        placeholder2: {
-          quote: '"Delivery was fast and the result was very professional."',
-          name: 'Client Name',
-          business: 'Restaurant',
-        },
-        placeholder3: {
-          quote: '"WhatsApp messages increased right after we posted the video."',
-          name: 'Client Name',
-          business: 'Clinic',
-        },
+      restaurantProof: {
+        tag: 'Real Work',
+        title: 'Restaurant Ads We Produced',
+        desc: 'Samples from videos we made for restaurants in Egypt — no stock quotes, just real work.',
+        cta: 'See more in portfolio',
+        whatsappCta: 'Order your restaurant video — 199 EGP',
       },
       finalCta: {
-        title: 'Ready to try your first video for your business?',
-        desc: 'Message us now and get an offer tailored to your business.',
+        title: 'Ready for your restaurant\'s first video ad?',
+        desc: 'Message us on WhatsApp and start with the 199 EGP first-video offer.',
         cta: 'Message us on WhatsApp',
         whatsappAria: 'Contact us on WhatsApp',
       },
       contact: {
         tag: 'Get In Touch',
-        title: "Let's turn your idea into a video that attracts customers",
-        desc: "Tell us about your business and the type of video you need. We'll reply with a suitable offer shortly.",
+        title: 'Let\'s create your restaurant\'s next ad',
+        desc: 'Tap WhatsApp below — we\'ll reply with 199 EGP offer details and next steps.',
         whatsapp: 'RWPST Motion',
         whatsappSub: 'Message us on WhatsApp now',
         whatsappAria: 'Contact RWPST Motion on WhatsApp',
@@ -454,7 +448,7 @@
         emailSubject: 'Video Ad Inquiry',
       },
       footer: {
-        tagline: 'Video Ad Production Studio',
+        tagline: 'Restaurant Video Ad Studio',
         rights: 'All rights reserved.',
       },
       modal: {
@@ -483,8 +477,13 @@
     return `https://wa.me/${WHATSAPP_NUMBER.replace('+', '')}?text=${encoded}`;
   }
 
-  function getWhatsAppUrl() {
-    return buildWhatsAppUrl(WHATSAPP_MESSAGE);
+  function getWhatsAppMessage(lang) {
+    const t = translations[lang || currentLang];
+    return t?.whatsapp?.message || WHATSAPP_MESSAGE;
+  }
+
+  function getWhatsAppUrl(lang) {
+    return buildWhatsAppUrl(getWhatsAppMessage(lang));
   }
 
   function applyLanguage(lang) {
@@ -523,7 +522,7 @@
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.content = t.meta.description;
 
-    const waUrl = getWhatsAppUrl();
+    const waUrl = getWhatsAppUrl(lang);
 
     document.querySelectorAll('a[href*="wa.me"]').forEach((link) => {
       link.href = waUrl;

@@ -306,6 +306,20 @@
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => setActiveTab(tab));
     });
+
+    const defaultTab =
+      document.querySelector('.portfolio-tab[data-category="restaurants"]') ||
+      document.querySelector('.portfolio-tab.is-active') ||
+      tabs[0];
+    if (defaultTab) setActiveTab(defaultTab);
+
+    const proofPortfolioCta = document.getElementById('restaurantProofPortfolioCta');
+    if (proofPortfolioCta) {
+      proofPortfolioCta.addEventListener('click', () => {
+        const restaurantsTab = document.querySelector('.portfolio-tab[data-category="restaurants"]');
+        if (restaurantsTab) setActiveTab(restaurantsTab);
+      });
+    }
   }
 
   /* --- Lazy-load portfolio videos below the fold --- */
