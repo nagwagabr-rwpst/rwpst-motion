@@ -556,8 +556,19 @@ ul {
   color: rgba(255, 255, 255, 0.82);
   max-width: 640px;
   margin-inline: auto;
-  margin-bottom: 3rem;
+  margin-bottom: 1.25rem;
   line-height: 1.8;
+}
+
+.hero__offer {
+  font-size: clamp(1rem, 2.4vw, 1.25rem);
+  font-weight: 700;
+  color: var(--brand-gold);
+  max-width: 640px;
+  margin-inline: auto;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  text-shadow: 0 0 24px rgba(243, 179, 76, 0.35);
 }
 
 .hero__actions {
@@ -609,6 +620,7 @@ ul {
   gap: 0.75rem 1rem;
   max-width: 680px;
   margin-inline: auto;
+  margin-bottom: 2rem;
   padding: 0;
   list-style: none;
 }
