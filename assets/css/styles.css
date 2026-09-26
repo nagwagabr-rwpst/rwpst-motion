@@ -914,6 +914,15 @@ ul {
   margin-bottom: 1.5rem;
 }
 
+.pricing-card__lead {
+  margin-top: -0.85rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
 .pricing-card__features {
   flex: 1;
   display: flex;
