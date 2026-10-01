@@ -24,33 +24,54 @@
   }
 
   function resolvePortfolioVideoSources() {
-    document.querySelectorAll('.portfolio__video source[data-video]').forEach((source) => {
+    document.querySelectorAll('.portfolio__video:not(.portfolio__video-blur) source[data-video]').forEach((source) => {
       const filename = source.getAttribute('data-video');
       if (!filename) return;
 
-      const url = getPortfolioVideoUrl(filename);
-      const video = source.closest('.portfolio__video');
-      const isLazy = Boolean(video && video.closest('#portfolio'));
+      // Keep the public URL off `src` until activatePortfolioVideo(). A src
+      // at startup makes the browser request the MP4 immediately.
+      source.setAttribute('data-src', getPortfolioVideoUrl(filename));
+      source.removeAttribute('src');
 
-      if (isLazy) {
-        source.setAttribute('data-src', url);
-      } else {
-        source.setAttribute('src', url);
-      }
+      const video = source.closest('video');
+      if (video) video.setAttribute('preload', 'none');
     });
   }
 
-  function ensurePortfolioVideoSourceLoaded(video) {
-    const source = video?.querySelector('source');
-    if (!source) return;
+  /**
+   * Load one portfolio video. Safe to call more than once: src is assigned
+   * and load() runs only on the first activation. Used by the viewport
+   * observer, featured hover preview, and modal playback.
+   */
+  function activatePortfolioVideo(video) {
+    if (!video || video.classList.contains('portfolio__video-blur')) return false;
+    if (video.dataset.portfolioActivated === 'true') return true;
 
-    if (!source.getAttribute('src')) {
-      const dataSrc = source.getAttribute('data-src');
-      if (dataSrc) {
-        source.setAttribute('src', dataSrc);
-        video.load();
-      }
+    const source = video.querySelector('source');
+    if (!source) return false;
+
+    let url = source.getAttribute('data-src');
+    if (!url) {
+      const filename = source.getAttribute('data-video');
+      if (!filename) return false;
+      url = getPortfolioVideoUrl(filename);
+      source.setAttribute('data-src', url);
     }
+
+    source.setAttribute('src', url);
+    video.setAttribute('preload', 'metadata');
+    video.dataset.portfolioActivated = 'true';
+
+    video.addEventListener('loadedmetadata', () => {
+      const wrap = video.closest('.portfolio__video-wrap');
+      if (wrap) wrap.classList.remove('is-placeholder');
+      applyVideoOrientation(video);
+      syncBlurVideo(video);
+    }, { once: true });
+
+    video.addEventListener('error', () => markAsPlaceholder(video), { once: true });
+    video.load();
+    return true;
   }
 
   /* --- Init --- */
@@ -162,51 +183,22 @@
     revealElements.forEach((el) => observer.observe(el));
   }
 
-  /* --- Check if video sources exist, apply orientation --- */
+  /* --- Flag cards with no resolvable file. Do not fetch MP4s here. --- */
   function checkVideoSources() {
-    const videos = [...document.querySelectorAll('.portfolio__video')];
-
-    if (!videos.length) return;
-
-    const onVideoReady = (video) => {
-      const wrap = video.closest('.portfolio__video-wrap');
-      if (wrap) wrap.classList.remove('is-placeholder');
-      applyVideoOrientation(video);
-      syncBlurVideo(video);
-    };
-
-    const tasks = videos.map((video) => new Promise((resolve) => {
+    document.querySelectorAll('.portfolio__video:not(.portfolio__video-blur)').forEach((video) => {
       const source = video.querySelector('source');
-      const srcPath = source?.getAttribute('src') || source?.getAttribute('data-src');
-
-      const finish = () => resolve();
-
-      if (!srcPath) {
-        finish();
-        return;
-      }
-
-      video.addEventListener('error', () => {
-        markAsPlaceholder(video);
-        finish();
-      }, { once: true });
-
-      video.addEventListener('loadedmetadata', () => {
-        onVideoReady(video);
-        finish();
-      }, { once: true });
-
-      if (source?.getAttribute('src')) {
-        video.load();
-      }
-    }));
-
-    Promise.all(tasks).catch(() => {});
+      const srcPath = source?.getAttribute('data-src') || source?.getAttribute('data-video');
+      if (!srcPath) markAsPlaceholder(video);
+    });
   }
 
   function setupBlurVideo(video) {
     const wrap = video.closest('.portfolio__video-wrap');
     if (!wrap || wrap.querySelector('.portfolio__video-blur')) return;
+
+    const mainSource = video.querySelector('source');
+    const activatedSrc = mainSource?.getAttribute('src');
+    if (!activatedSrc) return;
 
     const blur = document.createElement('video');
     blur.className = 'portfolio__video-blur';
@@ -216,13 +208,10 @@
     blur.setAttribute('aria-hidden', 'true');
     blur.setAttribute('preload', 'metadata');
 
-    const source = video.querySelector('source');
-    if (source) {
-      const blurSource = document.createElement('source');
-      blurSource.type = source.type || 'video/mp4';
-      blurSource.src = source.getAttribute('src') || source.getAttribute('data-src') || '';
-      blur.appendChild(blurSource);
-    }
+    const blurSource = document.createElement('source');
+    blurSource.type = mainSource.type || 'video/mp4';
+    blurSource.src = activatedSrc;
+    blur.appendChild(blurSource);
 
     wrap.insertBefore(blur, video);
     return blur;
@@ -232,20 +221,21 @@
     const wrap = video.closest('.portfolio__video-wrap');
     if (!wrap) return;
 
+    const mainSource = video.querySelector('source');
+    const activatedSrc = mainSource?.getAttribute('src');
+    if (!activatedSrc) return;
+
     let blur = wrap.querySelector('.portfolio__video-blur');
     if (!blur && getVideoOrientation(video) === 'portrait') {
       blur = setupBlurVideo(video);
     }
     if (!blur) return;
 
-    const mainSource = video.querySelector('source');
     const blurSource = blur.querySelector('source');
-    if (mainSource && blurSource) {
-      const src = mainSource.getAttribute('src') || mainSource.getAttribute('data-src');
-      if (src && !blurSource.getAttribute('src')) {
-        blurSource.src = src;
-        blur.load();
-      }
+    if (blurSource && !blurSource.getAttribute('src')) {
+      blurSource.src = activatedSrc;
+      blur.setAttribute('preload', 'metadata');
+      blur.load();
     }
   }
 
@@ -322,55 +312,22 @@
     }
   }
 
-  /* --- Lazy-load portfolio videos below the fold --- */
+  /* --- Activate portfolio videos only once they near the viewport --- */
   function initLazyVideos() {
-    const lazyVideos = [...document.querySelectorAll('#portfolio .portfolio__video')];
+    const lazyVideos = [...document.querySelectorAll('.portfolio__video:not(.portfolio__video-blur)')];
 
     if (!lazyVideos.length) return;
 
     lazyVideos.forEach((video) => {
-      const source = video.querySelector('source');
-      if (!source) return;
-
-      const src = source.getAttribute('src');
-      const dataSrc = source.getAttribute('data-src');
-
-      if (src && !dataSrc) {
-        source.setAttribute('data-src', src);
-        source.removeAttribute('src');
-      }
-
-      if (dataSrc || src) {
-        video.setAttribute('preload', 'none');
-      }
+      video.setAttribute('preload', 'none');
     });
-
-    const loadVideo = (video) => {
-      const source = video.querySelector('source');
-      const dataSrc = source?.getAttribute('data-src');
-      if (!dataSrc || source.getAttribute('src')) return;
-
-      source.setAttribute('src', dataSrc);
-      video.setAttribute('preload', 'metadata');
-
-      video.addEventListener('loadedmetadata', () => {
-        const wrap = video.closest('.portfolio__video-wrap');
-        if (wrap) wrap.classList.remove('is-placeholder');
-        applyVideoOrientation(video);
-        syncBlurVideo(video);
-      }, { once: true });
-
-      video.addEventListener('error', () => markAsPlaceholder(video), { once: true });
-      video.load();
-    };
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            loadVideo(entry.target);
-            observer.unobserve(entry.target);
-          }
+          if (!entry.isIntersecting) return;
+          activatePortfolioVideo(entry.target);
+          observer.unobserve(entry.target);
         });
       },
       { rootMargin: '200px 0px', threshold: 0.01 }
@@ -385,24 +342,34 @@
     if (prefersReducedMotion) return;
 
     document.querySelectorAll('[data-featured-preview]').forEach((card) => {
-      const video = card.querySelector('.portfolio__video');
-      const blur = card.querySelector('.portfolio__video-blur');
+      const video = card.querySelector('.portfolio__video:not(.portfolio__video-blur)');
       if (!video) return;
 
-      const playPreview = () => {
+      const playAttached = () => {
+        if (!card.classList.contains('is-previewing')) return;
         video.play().catch(() => {});
+        const blur = card.querySelector('.portfolio__video-blur');
         if (blur) blur.play().catch(() => {});
+      };
+
+      const playPreview = () => {
+        activatePortfolioVideo(video);
         card.classList.add('is-previewing');
+        playAttached();
+        if (video.readyState < HTMLMediaElement.HAVE_FUTURE_DATA) {
+          video.addEventListener('canplay', playAttached, { once: true });
+        }
       };
 
       const stopPreview = () => {
+        card.classList.remove('is-previewing');
         video.pause();
-        video.currentTime = 0;
+        if (video.readyState > 0) video.currentTime = 0;
+        const blur = card.querySelector('.portfolio__video-blur');
         if (blur) {
           blur.pause();
-          blur.currentTime = 0;
+          if (blur.readyState > 0) blur.currentTime = 0;
         }
-        card.classList.remove('is-previewing');
       };
 
       card.addEventListener('mouseenter', playPreview);
@@ -422,7 +389,7 @@
       if (!video || !playBtn || !wrap) return;
 
       const openVideo = () => {
-        ensurePortfolioVideoSourceLoaded(video);
+        activatePortfolioVideo(video);
         const orientation = card.dataset.orientation || getVideoOrientation(video);
         openModalWithVideo(video, orientation);
       };
