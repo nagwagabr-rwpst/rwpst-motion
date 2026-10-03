@@ -330,7 +330,7 @@
           observer.unobserve(entry.target);
         });
       },
-      { rootMargin: '200px 0px', threshold: 0.01 }
+      { rootMargin: '50px 0px', threshold: 0.01 }
     );
 
     lazyVideos.forEach((video) => observer.observe(video));
