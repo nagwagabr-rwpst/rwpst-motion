@@ -149,6 +149,20 @@
         updateProgress
       );
 
+      try {
+        if (window.RWPST_Marketing?.recordOrderSubmit) {
+          await Promise.race([
+            window.RWPST_Marketing.recordOrderSubmit({
+              id: result.id,
+              requestNumber: result.requestNumber,
+            }),
+            new Promise((resolve) => setTimeout(resolve, 4000)),
+          ]);
+        }
+      } catch (trackErr) {
+        console.error('[RWPST] Marketing order_submit failed:', trackErr);
+      }
+
       sessionStorage.setItem('rwpst_last_request_number', result.requestNumber);
       sessionStorage.setItem('rwpst_last_submission_id', result.id);
       window.location.href = '../order-success/';

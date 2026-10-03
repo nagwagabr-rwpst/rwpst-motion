@@ -342,6 +342,35 @@
     return new File([file], file.name, { type: mime, lastModified: file.lastModified });
   }
 
+  function readMarketingSessionId() {
+    try {
+      const raw = localStorage.getItem('rwpst_mkt_session');
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      const id = parsed?.id;
+      if (typeof id !== 'string') return null;
+      return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id) ? id : null;
+    } catch (err) {
+      console.error('[RWPST] Marketing session id unreadable:', err);
+      return null;
+    }
+  }
+
+  async function resolveMarketingSessionId() {
+    const marketing = window.RWPST_Marketing;
+    if (marketing?.whenReady) {
+      try {
+        await Promise.race([
+          Promise.resolve(marketing.whenReady()),
+          new Promise((resolve) => setTimeout(resolve, 4000)),
+        ]);
+      } catch (err) {
+        console.error('[RWPST] Marketing session sync failed:', err);
+      }
+    }
+    return readMarketingSessionId();
+  }
+
   /**
    * Submit the 199 EGP restaurant trial order.
    * Price and offer type are fixed inside create_trial_order — the client cannot set them.
@@ -385,6 +414,7 @@
       p_video_description: description || null,
       p_has_script_or_idea: fields.hasScriptOrIdea === true,
       p_notes: notes || null,
+      p_marketing_session_id: await resolveMarketingSessionId(),
     });
 
     if (error) {

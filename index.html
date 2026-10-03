@@ -186,7 +186,7 @@
               <li data-i18n="pricing.starter.f4">تسليم سريع خلال 48 ساعة</li>
               <li data-i18n="pricing.starter.f5">تعديل واحد</li>
             </ul>
-            <a href="order/index.html" class="btn btn--primary pricing-card__cta" data-i18n="pricing.starter.cta">ابدأ التجربة الآن</a>
+            <a href="order/index.html" class="btn btn--primary pricing-card__cta" id="pricingStarterOrderCta" data-i18n="pricing.starter.cta">ابدأ التجربة الآن</a>
           </article>
           <article class="pricing-card reveal">
             <span class="pricing-card__badge" data-i18n="pricing.growth.badge">الأكثر طلباً</span>
@@ -753,6 +753,9 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-env.js"></script>
+  <script src="assets/js/marketing.js" defer></script>
   <script src="assets/js/portfolio-videos.js" defer></script>
   <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/main.js" defer></script>
