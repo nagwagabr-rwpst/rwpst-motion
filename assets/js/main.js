@@ -374,8 +374,6 @@
 
       card.addEventListener('mouseenter', playPreview);
       card.addEventListener('mouseleave', stopPreview);
-      card.addEventListener('focusin', playPreview);
-      card.addEventListener('focusout', stopPreview);
     });
   }
 
