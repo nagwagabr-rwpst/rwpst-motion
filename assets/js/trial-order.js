@@ -165,6 +165,7 @@
 
       sessionStorage.setItem('rwpst_last_request_number', result.requestNumber);
       sessionStorage.setItem('rwpst_last_submission_id', result.id);
+      sessionStorage.setItem('rwpst_meta_lead_pending', result.id);
       window.location.href = '../order-success/';
     } catch (err) {
       console.error('[RWPST] Trial order submission failed:', err);
